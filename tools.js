@@ -100,7 +100,7 @@ window.TOOLS = [
     "category": "produce",
     "dimension": "toolset",
     "aiRole": "drafts",
-    "tagline": "Free-body diagrams and graphs generated to one house style.",
+    "tagline": "A diagram linter and arrow library that draw vectors to one house style.",
     "removes": "Hand-editing SVG coordinates for every free-body diagram, v-t graph, and interaction diagram.",
     "does": "A diagram linter (diagram-bench) and an arrow library (svgarrow) that draw vectors to one house style, plus a recipe library for lab-tool-style simulations. A data-driven figure library is in design.",
     "evidence": [
@@ -281,7 +281,7 @@ window.TOOLS = [
     "category": "produce",
     "dimension": "toolset",
     "aiRole": "drafts",
-    "tagline": "A school-schedule builder, a homework HTML builder, and text and equation extractors for two textbooks.",
+    "tagline": "Small scripts that turn source data into the school schedule and homework pages.",
     "removes": "Retyping schedules, homework, and readings.",
     "does": "Builds the documents from source data.",
     "evidence": [
@@ -298,7 +298,7 @@ window.TOOLS = [
     "category": "remember",
     "dimension": "skillset",
     "aiRole": "drafts",
-    "tagline": "A workshop plus a Drive starter folder teaching other teachers a portable, no-automation AI memory system.",
+    "tagline": "A colleague workshop on keeping AI memory in plain files that any chatbot can use.",
     "removes": "Starting every chatbot session from zero.",
     "does": "Teaches a portable memory approach that works with any chatbot.",
     "evidence": [
