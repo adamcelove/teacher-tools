@@ -13,9 +13,9 @@ window.TOOLS = [
     "evidence": [
       "Daily use; a hard gate on every printable.",
       "Public repo, MIT, CI green, 24 commits, 3 experiment forks.",
-      "Fit-loop experiment measured $0.36 per cell and is working toward a first-attempt pass rate above 70 %."
+      "Fit-loop experiment measured about 36 cents per automated layout attempt and is working toward a first-attempt pass rate above 70 %."
     ],
-    "failed": "A free-fall sheet shrank its SVG axis labels far below body text size. It looked fine on screen and was caught only by a minimum-size floor added to the checks.",
+    "failed": "On the 2026-09-15 free-fall sheet, fitting two pages shrank SVG axis labels to 6.1px against 13.33px body text. It was invisible on screen and unreadable on paper; printfit's 7px floor caught it.",
     "links": [
       {
         "label": "GitHub",
@@ -67,10 +67,9 @@ window.TOOLS = [
     "aiRole": "none",
     "tagline": "Lab groups of 2 to 4 that rotate partners and spread roles, with no AI and no network.",
     "removes": "Making lab groups of 2 to 4 by hand every lab, rotating partners widely and spreading roles evenly.",
-    "does": "A local app on port 8765 with no internet and no AI. Names are HMAC-hashed to IDs, and the only name file is gitignored.",
+    "does": "A local app on port 8765 with no internet and no AI. Names are replaced by coded IDs, and the only name file is never uploaded.",
     "evidence": [
-      "Data files touched on 2026-10-23.",
-      "No git history, so no commit count."
+      "Data files touched on 2026-10-23."
     ],
     "failed": "AI was considered and rejected: grouping is a relationship decision, and the class list never leaves the machine.",
     "links": [],
@@ -87,7 +86,7 @@ window.TOOLS = [
     "removes": "Writing, formatting, and re-posting study guides, practice sets, and worksheets to a site by hand.",
     "does": "One markdown source per guide, rendered two ways: a MkDocs reader build and a Google-Sites paste build. A queue-driven overnight runner builds pages unattended, and a language auditor strips teacher-facing metadata before handback.",
     "evidence": [
-      "Built nightly by tonight.sh (logs 10-20, 10-21, 10-22).",
+      "Built nightly by the overnight run (logs 10-20, 10-21, 10-22).",
       "139 commits in student-guides."
     ],
     "failed": "Not deployed. The site runs locally on port 8000, and the honors unit site is a spec only.",
@@ -103,7 +102,7 @@ window.TOOLS = [
     "aiRole": "drafts",
     "tagline": "Free-body diagrams and graphs generated to one house style.",
     "removes": "Hand-editing SVG coordinates for every free-body diagram, v-t graph, and interaction diagram.",
-    "does": "Figures generated from data to one house style, a diagram linter, and a recipe library for lab-tool-style simulations.",
+    "does": "A diagram linter (diagram-bench) and an arrow library (svgarrow) that draw vectors to one house style, plus a recipe library for lab-tool-style simulations. A data-driven figure library is in design.",
     "evidence": [
       "diagram-bench and svgarrow are the working pieces.",
       "sim-cookbook shipped 2026-06-17."
@@ -144,7 +143,7 @@ window.TOOLS = [
       "In use.",
       "20 commits, last on 2026-10-21."
     ],
-    "failed": "The grade-entry commands are blocked on the AI account by the student-data guard. Grading stays on a separate account.",
+    "failed": "The grade-entry commands are blocked on the AI account by the student-data guard.",
     "links": [],
     "media": null
   },
@@ -181,7 +180,7 @@ window.TOOLS = [
       "70+ memory entries in this project alone, most of them corrections that stuck.",
       "The teacher-ai-kit is the no-automation version other teachers can use with any chatbot."
     ],
-    "failed": "Memory only helps if it stays correct, so wrong entries are deleted rather than left to drift. A rule that is only a reminder gets ignored; the guards that deny are the ones that hold.",
+    "failed": "Memory files need upkeep: a wrong entry keeps being applied until someone removes it, which is why the student-data guard denies the action instead of relying on a reminder.",
     "links": [],
     "media": null
   },
@@ -214,9 +213,9 @@ window.TOOLS = [
     "category": "produce",
     "dimension": "toolset",
     "aiRole": "drafts",
-    "tagline": "Chains a one-shot brief, the class-site queue, and the printfit fit-loop queue under caffeinate.",
+    "tagline": "Queued build jobs run unattended overnight.",
     "removes": "Running queued build steps by hand.",
-    "does": "Rows that need a human end as needs-adam.",
+    "does": "Chains a one-off brief, the class-site queue, and the printfit layout queue in a single run that keeps the laptop awake. Rows that need the teacher stop and wait.",
     "evidence": [
       "Logs on 2026-10-20, 10-21, and 10-22."
     ],
@@ -230,12 +229,12 @@ window.TOOLS = [
     "tier": "B",
     "category": "check",
     "dimension": "toolset",
-    "aiRole": "none",
+    "aiRole": "checks",
     "tagline": "Obsidian cards with dropdowns pre-set to the recommended answer.",
     "removes": "Reading every draft end to end to approve it.",
     "does": "The next session reads only the exceptions. The human-approval step made cheap.",
     "evidence": [
-      "Local tool."
+      "The next session reads only the exceptions."
     ],
     "failed": "",
     "links": [],
@@ -247,7 +246,7 @@ window.TOOLS = [
     "tier": "B",
     "category": "organize",
     "dimension": "toolset",
-    "aiRole": "none",
+    "aiRole": "checks",
     "tagline": "A local panel on port 7717 that schedules which recurring quality pass runs next.",
     "removes": "Remembering which recurring checks are due.",
     "does": "Schedules the next quality pass.",
@@ -286,7 +285,7 @@ window.TOOLS = [
     "removes": "Retyping schedules, homework, and readings.",
     "does": "Builds the documents from source data.",
     "evidence": [
-      "Includes a Giancoli readings stamper."
+      "Hewitt and Giancoli text and equation extractors."
     ],
     "failed": "",
     "links": [],
@@ -298,12 +297,12 @@ window.TOOLS = [
     "tier": "B",
     "category": "remember",
     "dimension": "skillset",
-    "aiRole": "none",
+    "aiRole": "drafts",
     "tagline": "A workshop plus a Drive starter folder teaching other teachers a portable, no-automation AI memory system.",
     "removes": "Starting every chatbot session from zero.",
     "does": "Teaches a portable memory approach that works with any chatbot.",
     "evidence": [
-      "Evidence the work transfers to other teachers."
+      "A workshop and starter folder for colleagues."
     ],
     "failed": "",
     "links": [],
