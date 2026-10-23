@@ -21,11 +21,12 @@ h1,h2,h3{line-height:1.15;margin:0 0 12px}
 h1{font-size:clamp(28px,5vw,44px);font-weight:800}
 h2{font-size:28px;font-weight:700}
 .num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+a{color:var(--primary-text)}
 nav.bar{background:var(--text);color:var(--bg);padding:12px 0}
 nav.bar .wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-nav.bar a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:var(--radius)}
-nav.bar a[aria-current="true"]{background:rgba(255,255,255,.15)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:var(--radius);font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary)}
+nav.bar a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:var(--radius);min-height:48px;display:inline-flex;align-items:center}
+nav.bar a[aria-current="true"]{background:color-mix(in srgb,var(--bg) 15%,transparent)}
+.btn{font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:var(--radius);font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary)}
 .btn.secondary{background:transparent;border-color:var(--primary-text);color:var(--primary-text)}
 .btn:hover{filter:brightness(.92)}
 :where(a,button,[tabindex]):focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
@@ -33,7 +34,7 @@ nav.bar a[aria-current="true"]{background:rgba(255,255,255,.15)}
 .stat{background:var(--surface);border:1px solid var(--border);border-top:6px solid var(--primary);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
 .stat .num{font-size:36px;font-weight:700;display:block}
 .seg{display:inline-flex;border:2px solid var(--text);border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
-.seg button{min-height:48px;padding:0 16px;border:0;background:var(--surface);color:var(--text);font:inherit;cursor:pointer;display:grid}
+.seg button{min-height:48px;padding:0 16px;border:0;background:var(--surface);color:var(--text);font:inherit;cursor:pointer}
 .seg button{position:relative}
 .seg button>span:not(.ghost){position:absolute;left:16px;top:0;bottom:0;display:flex;align-items:center}
 .seg button>span.ghost{font-weight:700;visibility:hidden}
@@ -50,10 +51,10 @@ dialog{border:1px solid var(--border);border-radius:var(--radius);background:var
 dialog::backdrop{background:rgba(16,38,56,.55)}
 dialog h4{margin:16px 0 4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary-text)}
 dialog ul{margin:0;padding-left:20px}
-section{padding:48px 0}
+section.wrap{padding:48px 16px}
 .list{display:grid;gap:12px;padding:0;margin:0}
 .list li{list-style:none;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-left:6px solid var(--primary);border-radius:var(--radius)}
-.figure svg{width:100%;height:auto}
+.figure{overflow-x:auto;-webkit-overflow-scrolling:touch}.figure svg{width:100%;min-width:720px;height:auto;display:block}
 @media (prefers-reduced-motion: no-preference){.rise{animation:rise 200ms cubic-bezier(.2,.8,.2,1) both}.rise:nth-child(2){animation-delay:45ms}.rise:nth-child(3){animation-delay:90ms}}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 </style>
@@ -159,6 +160,7 @@ section{padding:48px 0}
   const grid=document.getElementById("grid"), filter=document.getElementById("filter"), count=document.getElementById("count");
   const dlg=document.getElementById("detail");
   let active="all", last=null;
+  const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
   function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
   function renderFilter(){
     filter.innerHTML=CATS.map(([k,l])=>`<button type="button" data-cat="${k}" aria-pressed="${k===active}"><span>${l}</span><span class="ghost" aria-hidden="true">${l}</span></button>`).join("");
@@ -171,7 +173,7 @@ section{padding:48px 0}
   }
   function renderGrid(){
     grid.innerHTML=tools.filter(t=>t.tier==="A").map(t=>`<button class="card" type="button" data-id="${t.id}" data-category="${t.category}" data-dimension="${t.dimension}" aria-haspopup="dialog">
-      <span class="tag">${esc(t.category)} · ${esc(AIROLE[t.aiRole])}</span><h3>${esc(t.name)}</h3><span>${esc(t.tagline)}</span></button>`).join("");
+      <span class="tag">${esc(cap(t.category))} · ${esc(AIROLE[t.aiRole])}</span><h3>${esc(t.name)}</h3><span>${esc(t.tagline)}</span></button>`).join("");
     grid.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openDetail(c.dataset.id)));
   }
   function renderSupporting(){
@@ -180,7 +182,7 @@ section{padding:48px 0}
   function openDetail(id){
     const t=tools.find(x=>x.id===id); if(!t) return;
     last=document.activeElement;
-    document.getElementById("detail-eyebrow").textContent=`${t.category} · ${AIROLE[t.aiRole]}`;
+    document.getElementById("detail-eyebrow").textContent=`${cap(t.category)} · ${AIROLE[t.aiRole]}`;
     document.getElementById("detail-title").textContent=t.name;
     document.getElementById("detail-body").innerHTML=
       `<h4>The tedious step it removes</h4><p>${esc(t.removes)}</p>`+
