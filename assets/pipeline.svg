@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" width="960" height="260" role="img" aria-labelledby="pipe-title" font-family="'Nunito Sans', system-ui, sans-serif" font-size="18" fill="currentColor">
+  <title id="pipe-title">From a brief to a printed page</title>
+  <defs>
+    <marker id="pipe-head" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="var(--primary, #1F6FA3)"/>
+    </marker>
+  </defs>
+  <rect x="2" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="65" y="96">Brief</tspan></text>
+  <rect x="168" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="231" y="84">Draft</tspan><tspan x="231" y="108">(Claude Code)</tspan></text>
+  <rect x="334" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle" font-weight="700"><tspan x="397" y="60">Checks:</tspan><tspan x="397" y="84">printfit,</tspan><tspan x="397" y="108">physics,</tspan><tspan x="397" y="132">language</tspan></text>
+  <rect x="500" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="563" y="84">Answer key</tspan><tspan x="563" y="108">toggle</tspan></text>
+  <rect x="666" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="729" y="84">Print or</tspan><tspan x="729" y="108">class site</tspan></text>
+  <rect x="832" y="30" width="126" height="120" rx="4" ry="4" fill="var(--surface, #FFFCF8)" stroke="var(--primary, #1F6FA3)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="895" y="72">Memory:</tspan><tspan x="895" y="96">what changed,</tspan><tspan x="895" y="120">why</tspan></text>
+  <path d="M128 90 L158 90" fill="none" stroke="var(--primary, #1F6FA3)" stroke-width="2" marker-end="url(#pipe-head)"/>
+  <path d="M294 90 L324 90" fill="none" stroke="var(--primary, #1F6FA3)" stroke-width="2" marker-end="url(#pipe-head)"/>
+  <path d="M460 90 L490 90" fill="none" stroke="var(--primary, #1F6FA3)" stroke-width="2" marker-end="url(#pipe-head)"/>
+  <path d="M626 90 L656 90" fill="none" stroke="var(--primary, #1F6FA3)" stroke-width="2" marker-end="url(#pipe-head)"/>
+  <path d="M792 90 L822 90" fill="none" stroke="var(--primary, #1F6FA3)" stroke-width="2" marker-end="url(#pipe-head)"/>
+  <rect x="307" y="164" width="180" height="62" rx="4" ry="4" fill="var(--secondary, #3F7A62)" fill-opacity="0.28" stroke="var(--secondary, #3F7A62)" stroke-width="2"/>
+  <text text-anchor="middle"><tspan x="397" y="190">Teacher judgment</tspan><tspan x="397" y="214">gates here</tspan></text>
+</svg>
