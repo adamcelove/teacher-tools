@@ -12,8 +12,8 @@ window.TOOLS = [
     "does": "Renders the page as Chrome prints it, measures it, and names the broken element with a fix. The fit command adjusts figure and work-space heights to a page budget.",
     "evidence": [
       "Daily use; a hard gate on every printable.",
-      "Public repo, MIT, CI green, 24 commits, 3 experiment forks.",
-      "Fit-loop experiment measured about 36 cents per automated layout attempt and is working toward a first-attempt pass rate above 70 %."
+      "Public repo, MIT license, CI green, 24 commits, 3 experiment forks.",
+      "Fit-loop experiment measured about 36 cents per experiment run and is working toward a first-attempt pass rate above 70 %."
     ],
     "failed": "On the 2026-09-15 free-fall sheet, fitting two pages shrank SVG axis labels to 6.1px against 13.33px body text. It was invisible on screen and unreadable on paper; printfit's 7px floor caught it.",
     "links": [
@@ -73,7 +73,7 @@ window.TOOLS = [
     "aiRole": "none",
     "tagline": "Lab groups of 2 to 4 that rotate partners and spread roles, with no AI and no network.",
     "removes": "Making lab groups of 2 to 4 by hand every lab, rotating partners widely and spreading roles evenly.",
-    "does": "A local app on port 8765 with no internet and no AI. Names are replaced by coded IDs, and the only name file is never uploaded.",
+    "does": "A local app on the laptop with no internet and no AI. Names are replaced by coded IDs, and the only name file is never uploaded.",
     "evidence": [
       "Data files touched on 2026-10-23."
     ],
@@ -98,7 +98,7 @@ window.TOOLS = [
       "Built nightly by the overnight run (logs 10-20, 10-21, 10-22).",
       "139 commits in student-guides."
     ],
-    "failed": "Not deployed. The site runs locally on port 8000, and the honors unit site is a spec only.",
+    "failed": "Not deployed. The site runs locally on the laptop, and the honors unit site is a spec only.",
     "links": [],
     "media": null
   },
@@ -144,7 +144,7 @@ window.TOOLS = [
     "tier": "A",
     "category": "distribute",
     "dimension": "toolset",
-    "aiRole": "none",
+    "aiRole": "drafts",
     "tagline": "List what is due, create assignments, and stage grades from the terminal.",
     "removes": "Clicking through the LMS to list what is due, create an assignment for two parallel sections, export a class list, or stage grades.",
     "does": "A command-line tool that uses the faculty web session, not the vendor API, which cannot create assignments. Dry run first, created unpublished, one shared assignment per parallel pair.",
@@ -186,7 +186,7 @@ window.TOOLS = [
     "removes": "Re-explaining classroom conventions, course structure, and hard-won corrections at the start of every AI session.",
     "does": "One fact per file with a why and a how-to-apply, and an index loaded each session. Hooks surface the right rules at the right moment. Deterministic guards deny instead of remind.",
     "evidence": [
-      "70+ memory entries in this project alone, most of them corrections that stuck.",
+      "70+ memory entries in the knowledge base alone, most of them corrections that stuck.",
       "The teacher-ai-kit is the no-automation version other teachers can use with any chatbot."
     ],
     "failed": "Memory files need upkeep: a wrong entry keeps being applied until someone removes it, which is why the student-data guard denies the action instead of relying on a reminder.",
@@ -256,7 +256,7 @@ window.TOOLS = [
     "category": "organize",
     "dimension": "toolset",
     "aiRole": "checks",
-    "tagline": "A local panel on port 7717 that schedules which recurring quality pass runs next.",
+    "tagline": "A local panel on the laptop that schedules which recurring quality pass runs next.",
     "removes": "Remembering which recurring checks are due.",
     "does": "Schedules the next quality pass.",
     "evidence": [
@@ -277,7 +277,7 @@ window.TOOLS = [
     "removes": "Proofreading drafts for the same rule violations.",
     "does": "Each runs before handback and returns a violation list.",
     "evidence": [
-      "Three agents, each read-only."
+      "Each returns a violation list before anything is handed back."
     ],
     "failed": "",
     "links": [],

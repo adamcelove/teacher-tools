@@ -69,11 +69,11 @@ section.wrap{padding:48px 16px}
 <header id="hero" class="wrap" style="padding:56px 16px 24px">
   <p class="eyebrow rise">Problem of practice · tool set with a mindset edge</p>
   <h1 class="rise">Teachers lose hours to steps that are necessary, tedious, and involve no student.</h1>
-  <p class="rise" style="font-size:20px;max-width:60ch">AI can take those steps. It earns that only behind deterministic checks, with the teacher keeping every judgment that touches a student. These are the tools I built and use every week in two physics courses.</p>
+  <p class="rise" style="font-size:20px;max-width:60ch">AI can take those steps. It earns that only behind deterministic checks, with the teacher keeping every judgment that touches a student. These are the tools I built for two physics courses; each card says what is in use and what is still in design.</p>
   <p style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn" href="#tools">See the tools</a> <a class="btn secondary" href="#nonuse">Where AI is kept out</a></p>
   <div class="stats" aria-label="Three numbers">
     <div class="stat"><span class="num">495</span>wiki pages serving every session</div>
-    <div class="stat"><span class="num">306</span>standards every practice item is tagged to</div>
+    <div class="stat"><span class="num">306</span>custom standards; every practice item is tagged to one</div>
     <div class="stat"><span class="num">2</span>public repos for other physics teachers</div>
   </div>
 </header>
@@ -98,7 +98,7 @@ section.wrap{padding:48px 16px}
   <h2>Where AI is kept out, on purpose</h2>
   <ul class="list">
     <li><strong>Grouping students.</strong> The Lab Group Mixer uses no AI and no network. Names are hashed to IDs; the only name file never leaves the machine.</li>
-    <li><strong>Student data.</strong> A hook on the AI account blocks every path that holds student work or grades. Grading stays on a separate account with no AI tools.</li>
+    <li><strong>Student data.</strong> A hook on the AI account blocks every path that holds student work or grades, so they never enter these tools.</li>
     <li><strong>Final judgment on anything a student reads.</strong> Every student-facing document passes a language auditor and a physics reviewer, then me, before it prints.</li>
     <li><strong>Derivation rules in answer keys.</strong> AI drafts; the rules for how a solution is written (symbolic before numbers, derive symmetry, never assert it) are mine and are checked.</li>
   </ul>
@@ -189,7 +189,7 @@ section.wrap{padding:48px 16px}
       `<h4>What it does</h4><p>${esc(t.does)}</p>`+
       `<h4>Evidence</h4><ul>${t.evidence.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>`+
       (t.failed?`<h4>What failed or was removed</h4><p>${esc(t.failed)}</p>`:"")+
-      (t.media?`<img src="${esc(t.media.src)}" alt="${esc(t.media.alt)}" style="width:100%;margin-top:12px;border:1px solid var(--border)">`:"")+
+      (t.media?`<a href="${esc(t.media.src)}" target="_blank" rel="noopener"><img src="${esc(t.media.src)}" alt="${esc(t.media.alt)}" style="width:100%;margin-top:12px;border:1px solid var(--border)"></a>`:"")+
       (t.links.length?`<p>${t.links.map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(" · ")}</p>`:"");
     dlg.showModal();
   }
