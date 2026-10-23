@@ -22,7 +22,10 @@ window.TOOLS = [
         "href": "https://github.com/adamcelove/printfit"
       }
     ],
-    "media": null
+    "media": {
+      "src": "assets/shots/printfit-fail.png",
+      "alt": "printfit check report on a failing worksheet: two hard text-scale findings, each naming the element and a fix, verdict fail"
+    }
   },
   {
     "id": "workspace-sizing",
@@ -56,7 +59,10 @@ window.TOOLS = [
     ],
     "failed": "The edit mode and Save-to-file halves were retired after measured non-use. Only the toggle survived.",
     "links": [],
-    "media": null
+    "media": {
+      "src": "assets/shots/key-toggle.png",
+      "alt": "A worksheet problem with the answer key switched on: diagram, graph, and the first worked answer shown in place"
+    }
   },
   {
     "id": "lab-group-mixer",
@@ -73,7 +79,10 @@ window.TOOLS = [
     ],
     "failed": "AI was considered and rejected: grouping is a relationship decision, and the class list never leaves the machine.",
     "links": [],
-    "media": null
+    "media": {
+      "src": "assets/shots/mixer.png",
+      "alt": "Lab Group Mixer proposing two groups of four with roles for a demo class of eight made-up names"
+    }
   },
   {
     "id": "class-site",
