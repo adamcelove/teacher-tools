@@ -34,6 +34,18 @@ def main():
         assert b not in low, f"banned token {b!r} in tools.js"
     assert any(t["aiRole"] == "none" for t in tools), "need at least one intentional non-use entry"
     print(f"ok: {len(tools)} tools, {len(a)} tier A")
+    check_page()
+
+def check_page():
+    html = (ROOT / "index.html").read_text()
+    for anchor in ["#hero", "#tools", "#filter", "#grid", "#detail", "#nonuse", "#pipeline", "#supporting", "#about"]:
+        assert f'id="{anchor[1:]}"' in html, f"missing {anchor}"
+    assert "prefers-reduced-motion" in html, "no reduced-motion path"
+    assert "prefers-color-scheme: dark" in html, "no dark palette"
+    assert 'src="tools.js"' in html
+    assert "—" not in html, "em dash in index.html"
+    assert '<a class="skip" href="#tools">' in html, "skip link missing"
+    print("ok: page anchors")
 
 if __name__ == "__main__":
     main()

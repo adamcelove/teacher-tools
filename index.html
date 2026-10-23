@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Tools, Checked</title>
+<meta name="description" content="Adam Love's teacher-facing AI tools: what each one takes off a physics teacher's desk, how its output is checked, and where AI is deliberately kept out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4EEE6;--surface:#FFFCF8;--border:#E3D8CB;--text:#1C2433;--text2:#5E6370;--primary:#1F6FA3;--on-primary:#FFFFFF;--primary-text:#1A5F8C;--tint:#DDEBF5;--secondary:#3F7A62;--radius:4px;--shadow:0 1px 3px rgba(0,0,0,.12)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#102638;--surface:#17324A;--border:#2A4A66;--text:#F3EEE6;--text2:#AFC0CF;--primary:#E8833A;--on-primary:#102638;--primary-text:#F09A55;--tint:#3A3328;--secondary:#E9C85B}}
+:root[data-theme="dark"]{--bg:#102638;--surface:#17324A;--border:#2A4A66;--text:#F3EEE6;--text2:#AFC0CF;--primary:#E8833A;--on-primary:#102638;--primary-text:#F09A55;--tint:#3A3328;--secondary:#E9C85B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 "Nunito Sans",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:var(--on-primary);padding:12px 16px;border-radius:var(--radius)}
+.skip:focus{left:16px;z-index:10}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary-text);margin:0 0 8px}
+h1,h2,h3{line-height:1.15;margin:0 0 12px}
+h1{font-size:clamp(28px,5vw,44px);font-weight:800}
+h2{font-size:28px;font-weight:700}
+.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+nav.bar{background:var(--text);color:var(--bg);padding:12px 0}
+nav.bar .wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav.bar a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:var(--radius)}
+nav.bar a[aria-current="true"]{background:rgba(255,255,255,.15)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:var(--radius);font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary)}
+.btn.secondary{background:transparent;border-color:var(--primary-text);color:var(--primary-text)}
+.btn:hover{filter:brightness(.92)}
+:where(a,button,[tabindex]):focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin:32px 0}
+.stat{background:var(--surface);border:1px solid var(--border);border-top:6px solid var(--primary);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.stat .num{font-size:36px;font-weight:700;display:block}
+.seg{display:inline-flex;border:2px solid var(--text);border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
+.seg button{min-height:48px;padding:0 16px;border:0;background:var(--surface);color:var(--text);font:inherit;cursor:pointer;display:grid}
+.seg button{position:relative}
+.seg button>span:not(.ghost){position:absolute;left:16px;top:0;bottom:0;display:flex;align-items:center}
+.seg button>span.ghost{font-weight:700;visibility:hidden}
+.seg button[aria-pressed="true"]{background:var(--primary);color:var(--on-primary);font-weight:700}
+.count{display:inline-block;min-width:3ch;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:24px}
+.card{background:var(--surface);border:1px solid var(--border);border-top:6px solid var(--primary);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.card[data-dimension="mindset"]{border-top-color:var(--secondary)}
+.card:hover{filter:brightness(.97)}
+.card h3{font-size:20px;margin:0}
+.card .tag{font-size:13px;color:var(--text2)}
+.card[hidden]{display:none}
+dialog{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);max-width:720px;width:calc(100% - 32px);padding:24px;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+dialog::backdrop{background:rgba(16,38,56,.55)}
+dialog h4{margin:16px 0 4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary-text)}
+dialog ul{margin:0;padding-left:20px}
+section{padding:48px 0}
+.list{display:grid;gap:12px;padding:0;margin:0}
+.list li{list-style:none;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-left:6px solid var(--primary);border-radius:var(--radius)}
+.figure svg{width:100%;height:auto}
+@media (prefers-reduced-motion: no-preference){.rise{animation:rise 200ms cubic-bezier(.2,.8,.2,1) both}.rise:nth-child(2){animation-delay:45ms}.rise:nth-child(3){animation-delay:90ms}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#tools">Skip to the tools</a>
+<nav class="bar" aria-label="Sections"><div class="wrap">
+  <strong>Adam Love</strong>
+  <a href="#tools">Tools</a><a href="#nonuse">Where AI is kept out</a><a href="#pipeline">How it fits together</a><a href="#about">About</a>
+</div></nav>
+
+<header id="hero" class="wrap" style="padding:56px 16px 24px">
+  <p class="eyebrow rise">Problem of practice · tool set with a mindset edge</p>
+  <h1 class="rise">Teachers lose hours to steps that are necessary, tedious, and involve no student.</h1>
+  <p class="rise" style="font-size:20px;max-width:60ch">AI can take those steps. It earns that only behind deterministic checks, with the teacher keeping every judgment that touches a student. These are the tools I built and use every week in two physics courses.</p>
+  <p><a class="btn" href="#tools">See the tools</a> <a class="btn secondary" href="#nonuse">Where AI is kept out</a></p>
+  <div class="stats" aria-label="Three numbers">
+    <div class="stat"><span class="num">495</span>wiki pages serving every session</div>
+    <div class="stat"><span class="num">306</span>standards every practice item is tagged to</div>
+    <div class="stat"><span class="num">2</span>public repos for other physics teachers</div>
+  </div>
+</header>
+
+<section id="tools" class="wrap">
+  <p class="eyebrow">The tools</p>
+  <h2>What each one takes off the desk</h2>
+  <div id="filter" class="seg" role="group" aria-label="Filter by what the tool does"></div>
+  <p class="tag"><span class="count num" id="count"></span> shown. Select a card for the full story, including what failed.</p>
+  <div id="grid" class="grid"></div>
+</section>
+
+<dialog id="detail" aria-labelledby="detail-title">
+  <p class="eyebrow" id="detail-eyebrow"></p>
+  <h3 id="detail-title" style="font-size:26px"></h3>
+  <div id="detail-body"></div>
+  <p style="margin-top:24px"><button class="btn secondary" id="detail-close" type="button">Close</button></p>
+</dialog>
+
+<section id="nonuse" class="wrap">
+  <p class="eyebrow">Mindset</p>
+  <h2>Where AI is kept out, on purpose</h2>
+  <ul class="list">
+    <li><strong>Grouping students.</strong> The Lab Group Mixer uses no AI and no network. Names are hashed to IDs; the only name file never leaves the machine.</li>
+    <li><strong>Student data.</strong> A hook on the AI account blocks every path that holds student work or grades. Grading stays on a separate account with no AI tools.</li>
+    <li><strong>Final judgment on anything a student reads.</strong> Every student-facing document passes a language auditor and a physics reviewer, then me, before it prints.</li>
+    <li><strong>Derivation rules in answer keys.</strong> AI drafts; the rules for how a solution is written (symbolic before numbers, derive symmetry, never assert it) are mine and are checked.</li>
+  </ul>
+</section>
+
+<section id="pipeline" class="wrap">
+  <p class="eyebrow">How it fits together</p>
+  <h2>From a brief to a printed page</h2>
+  <div class="figure"><!-- Task 3 inserts assets/pipeline.svg inline here --></div>
+</section>
+
+<section id="supporting" class="wrap">
+  <p class="eyebrow">Supporting pieces</p>
+  <h2>Behind the headline tools</h2>
+  <ul class="list" id="supporting-list"></ul>
+</section>
+
+<section id="about" class="wrap">
+  <p class="eyebrow">About</p>
+  <h2>Adam Love</h2>
+  <p style="max-width:60ch">Physics teacher at University School since 2019: General Physics and Honors Physics, grades 10 to 12. Public Forum debate coach. MIT physics. I build these tools with Claude Code and share the ones that travel: <a href="https://github.com/adamcelove/physics-doc-kit">physics-doc-kit</a> and <a href="https://github.com/adamcelove/printfit">printfit</a>.</p>
+</section>
+<footer class="wrap" style="padding:24px 16px;color:var(--text2);font-size:14px">No student data appears on this page or in its repository.</footer>
+
+<script src="tools.js"></script>
+<script>
+(function(){
+  const CATS=[["all","All"],["produce","Produce"],["check","Check"],["distribute","Distribute"],["organize","Organize"],["remember","Remember"]];
+  const AIROLE={drafts:"AI drafts, checks gate it",checks:"AI output is checked here",none:"No AI, by design"};
+  const tools=window.TOOLS||[];
+  const grid=document.getElementById("grid"), filter=document.getElementById("filter"), count=document.getElementById("count");
+  const dlg=document.getElementById("detail");
+  let active="all", last=null;
+  function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  function renderFilter(){
+    filter.innerHTML=CATS.map(([k,l])=>`<button type="button" data-cat="${k}" aria-pressed="${k===active}"><span>${l}</span><span class="ghost" aria-hidden="true">${l}</span></button>`).join("");
+    filter.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.cat;renderFilter();applyFilter();}));
+  }
+  function applyFilter(){
+    let n=0;
+    grid.querySelectorAll(".card").forEach(c=>{const show=active==="all"||c.dataset.category===active;c.hidden=!show;if(show)n++;});
+    count.textContent=n;
+  }
+  function renderGrid(){
+    grid.innerHTML=tools.filter(t=>t.tier==="A").map(t=>`<button class="card" type="button" data-id="${t.id}" data-category="${t.category}" data-dimension="${t.dimension}" aria-haspopup="dialog">
+      <span class="tag">${esc(t.category)} · ${esc(AIROLE[t.aiRole])}</span><h3>${esc(t.name)}</h3><span>${esc(t.tagline)}</span></button>`).join("");
+    grid.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openDetail(c.dataset.id)));
+  }
+  function renderSupporting(){
+    document.getElementById("supporting-list").innerHTML=tools.filter(t=>t.tier==="B").map(t=>`<li><strong>${esc(t.name)}.</strong> ${esc(t.tagline)} ${esc(t.evidence[0]||"")}</li>`).join("");
+  }
+  function openDetail(id){
+    const t=tools.find(x=>x.id===id); if(!t) return;
+    last=document.activeElement;
+    document.getElementById("detail-eyebrow").textContent=`${t.category} · ${AIROLE[t.aiRole]}`;
+    document.getElementById("detail-title").textContent=t.name;
+    document.getElementById("detail-body").innerHTML=
+      `<h4>The tedious step it removes</h4><p>${esc(t.removes)}</p>`+
+      `<h4>What it does</h4><p>${esc(t.does)}</p>`+
+      `<h4>Evidence</h4><ul>${t.evidence.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>`+
+      (t.failed?`<h4>What failed or was removed</h4><p>${esc(t.failed)}</p>`:"")+
+      (t.media?`<img src="${esc(t.media.src)}" alt="${esc(t.media.alt)}" style="width:100%;margin-top:12px;border:1px solid var(--border)">`:"")+
+      (t.links.length?`<p>${t.links.map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(" · ")}</p>`:"");
+    dlg.showModal();
+  }
+  document.getElementById("detail-close").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();});
+  dlg.addEventListener("close",()=>{if(last)last.focus();});
+  renderFilter(); renderGrid(); renderSupporting(); applyFilter();
+})();
+</script>
+</body>
+</html>
